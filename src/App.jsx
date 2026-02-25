@@ -287,21 +287,23 @@ const css = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
   html { scroll-behavior: smooth; font-size: 16px; }
   body {
     background: #0e0e0e;
     color: #fff;
     font-family: 'DM Sans', sans-serif;
     line-height: 1.6;
-    overflow-x: hidden;
   }
+  #root { width: 100%; display: flex; flex-direction: column; }
+  main { width: 100%; }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: #0e0e0e; }
   ::-webkit-scrollbar-thumb { background: #2F80ED; border-radius: 10px; }
 
   /* Nav */
   .nav-root {
-    position: fixed; top: 0; left: 0; right: 0;
+    position: fixed; top: 0; left: 0; right: 0; width: 100%;
     z-index: 1000;
     display: flex; align-items: center; justify-content: space-between;
     padding: 24px 64px;
@@ -433,16 +435,19 @@ const css = `
 
   /* Hero */
   .hero {
-    position: relative; height: 100vh; min-height: 700px;
+    position: relative; width: 100vw; height: 100vh; min-height: 700px;
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
+    overflow: hidden; left: 50%; right: 50%;
+    margin-left: -50vw; margin-right: -50vw;
   }
   .hero-bg {
-    position: absolute; inset: 0;
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%; height: 100%;
     background:
       linear-gradient(170deg, rgba(47,128,237,0.1) 0%, transparent 45%),
       linear-gradient(to bottom, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.78) 100%),
-      url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80&fit=crop') center/cover no-repeat;
+      url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80&fit=crop') center center / cover no-repeat;
+    background-attachment: scroll;
     animation: bgZoom 14s ease-in-out infinite alternate;
   }
   @keyframes bgZoom {
